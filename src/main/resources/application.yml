@@ -1,0 +1,22 @@
+server:
+  servlet:
+    port: 8080
+    context-path: /api
+
+spring:
+  application:
+    name: Covid Helper
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/covidhelper
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ENC(3qOuC5fjnob3OsObRHLDq1388DUIVgmQ9vs8Y2A1jf2NbzbAtM/9ndV9LVsjt1Z0jebB4El8pAJzl0rQkjP67Xdnxo556Q8RKsd55V6pCiYus8ht2KG+lw==)
+            clientSecret: ENC(X8KF/2b9wwiIYNbJtF8/DqdiHACDycKdbHlltSTfelNmm9gSPGkw+A==)
+            redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
