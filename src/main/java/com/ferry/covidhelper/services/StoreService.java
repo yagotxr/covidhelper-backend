@@ -4,7 +4,6 @@ import com.ferry.covidhelper.domains.Store;
 
 public interface StoreService {
 
-    Store getById(String id);
-
+    Store registerNewStore(Store newStore);
 
 }
