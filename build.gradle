@@ -17,11 +17,18 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.projectlombok:lombok:1.18.12'
+
+	compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.4.1.RELEASE'
+
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	testCompileOnly 'org.projectlombok:lombok:1.18.12'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 }
 
 test {
