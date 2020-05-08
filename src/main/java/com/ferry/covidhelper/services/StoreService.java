@@ -5,5 +5,7 @@ import com.ferry.covidhelper.domains.Store;
 public interface StoreService {
 
     Store registerNewStore(Store newStore);
-
+    void deleteStore(String storeId);
+    Store findStoreById(String storeId);
+    boolean existsById(String storeId);
 }

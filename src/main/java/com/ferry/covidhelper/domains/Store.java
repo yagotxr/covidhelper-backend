@@ -4,6 +4,7 @@ import com.ferry.covidhelper.domains.subDomains.Address;
 import com.ferry.covidhelper.payloads.requests.StoreRegisterRequest;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,11 +14,13 @@ import static com.ferry.covidhelper.domains.subDomains.Address.getAddressFromReq
 import static lombok.AccessLevel.PRIVATE;
 
 @Document(collection = "stores")
+@Getter
 @AllArgsConstructor(access = PRIVATE)
 public class Store {
 
     @Id
-    private String storeId;
+    @Field("storeId")
+    private String id;
 
     @Field("name")
     private String name;
