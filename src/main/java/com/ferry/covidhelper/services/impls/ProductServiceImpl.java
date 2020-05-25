@@ -1,8 +1,9 @@
 package com.ferry.covidhelper.services.impls;
 
 import com.ferry.covidhelper.domains.Product;
-import com.ferry.covidhelper.exceptions.BadRequest;
+import com.ferry.covidhelper.domains.Store;
 import com.ferry.covidhelper.exceptions.NotFound;
+import com.ferry.covidhelper.payloads.requests.ProductRegistrationRequest;
 import com.ferry.covidhelper.repositories.ProductRepository;
 import com.ferry.covidhelper.services.ProductService;
 import lombok.AllArgsConstructor;
@@ -17,13 +18,15 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Override
-    public Product registerProduct(Product product) {
+    public Product registerProduct(ProductRegistrationRequest registrationRequest, Store store) {
+        Product product = Product.of(registrationRequest, store);
         return productRepository.insert(product);
     }
 
     @Override
-    public Product getSpecificProduct(String productId) {
-            return productRepository.findById(productId).orElseThrow(() -> new NotFound("Product not found"));
+    public Product getSpecificProduct(String productId, Store store) {
+        return productRepository.findByIdAndStoreId(productId, store.getId())
+                .orElseThrow(() -> new NotFound("Product not found in this store."));
     }
 
     @Override
@@ -32,11 +35,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product updateStock(Product product, long stockUpdate) {
-        if(stockUpdate < 0){
-            throw new BadRequest("Stocks must not be less then 0;");
-        }
-        product.setStock(stockUpdate);
+    public Product editProduct(Product product, ProductRegistrationRequest registrationRequest) {
+        product.setName(registrationRequest.getName());
+        product.setDescription(registrationRequest.getDescription());
+        product.setStock(registrationRequest.getStock());
         return productRepository.save(product);
     }
 

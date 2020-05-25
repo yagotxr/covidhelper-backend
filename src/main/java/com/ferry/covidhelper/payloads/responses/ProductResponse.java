@@ -1,13 +1,14 @@
-package com.ferry.covidhelper.payloads.requests;
+package com.ferry.covidhelper.payloads.responses;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ferry.covidhelper.domains.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor(onConstructor_ = @JsonCreator)
-public class ProductRegistrationRequest {
+public class ProductResponse {
 
     @JsonProperty("name")
     private final String name;
@@ -17,4 +18,11 @@ public class ProductRegistrationRequest {
 
     @JsonProperty("stock")
     private final long stock;
+
+    public static ProductResponse of(Product product) {
+        return new ProductResponse(
+                product.getName(),
+                product.getDescription(),
+                product.getStock());
+    }
 }

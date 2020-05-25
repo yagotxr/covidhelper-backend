@@ -25,7 +25,7 @@ public class StoreController {
     public StoreResponse registerStore(@AuthenticationPrincipal UserPrincipal principal,
                                        @RequestBody StoreRegistrationRequest request){
         User user = userService.findUser(principal.getName());
-        Store store = storeService.registerNewStore(Store.of(request, user));
+        Store store = storeService.registerNewStore(request, user);
         return StoreResponse.of(store);
     }
 
@@ -34,7 +34,7 @@ public class StoreController {
     public StoreResponse getStoreProfile(@AuthenticationPrincipal UserPrincipal principal,
                                          @PathVariable("storeId") String storeId){
         User user = userService.findUser(principal.getName());
-        Store store = storeService.getUserStore(storeId, user);
+        Store store = storeService.getStore(storeId, user);
         return StoreResponse.of(store);
     }
 
@@ -43,7 +43,7 @@ public class StoreController {
     public void deleteStore(@AuthenticationPrincipal UserPrincipal principal,
                             @PathVariable("storeId") String storeId){
         User user = userService.findUser(principal.getName());
-        Store store = storeService.getUserStore(storeId, user);
+        Store store = storeService.getStore(storeId, user);
         storeService.deleteStore(store);
     }
 }
