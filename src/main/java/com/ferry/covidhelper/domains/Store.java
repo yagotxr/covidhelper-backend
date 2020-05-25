@@ -1,17 +1,15 @@
 package com.ferry.covidhelper.domains;
 
 import com.ferry.covidhelper.domains.subDomains.Address;
-import com.ferry.covidhelper.payloads.requests.StoreRegisterRequest;
-import lombok.AccessLevel;
+import com.ferry.covidhelper.payloads.requests.StoreRegistrationRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
-import javax.validation.constraints.Email;
 
 import static com.ferry.covidhelper.domains.subDomains.Address.getAddressFromRequest;
 import static lombok.AccessLevel.PRIVATE;
@@ -32,6 +30,7 @@ public class Store {
     @Field("name")
     private String name;
 
+    @Indexed
     @Field("cnpj")
     private String cnpj;
 
@@ -41,7 +40,7 @@ public class Store {
     @Field("phoneNumbers")
     private String[] phoneNumbers;
 
-    public static Store of(StoreRegisterRequest request, User user){
+    public static Store of(StoreRegistrationRequest request, User user){
         return new Store(
                 new ObjectId().toString(),
                 user.getId(),
@@ -50,5 +49,9 @@ public class Store {
                 getAddressFromRequest(request),
                 request.getPhoneNumbers()
         );
+    }
+
+    public boolean belongsTo(User user) {
+        return StringUtils.equals(this.userId, user.getId());
     }
 }

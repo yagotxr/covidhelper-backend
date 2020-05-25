@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 @Getter
 @AllArgsConstructor(onConstructor_ = @JsonCreator)
-public class ProductRegisterRequest {
+public class ProductRegistrationRequest {
 
     @JsonProperty("name")
     private String name;

@@ -3,6 +3,7 @@ package com.ferry.covidhelper.services.impls;
 import com.ferry.covidhelper.domains.Store;
 import com.ferry.covidhelper.domains.User;
 import com.ferry.covidhelper.exceptions.BadRequest;
+import com.ferry.covidhelper.exceptions.Forbidden;
 import com.ferry.covidhelper.exceptions.NotFound;
 import com.ferry.covidhelper.repositories.StoreRepository;
 import com.ferry.covidhelper.services.StoreService;
@@ -18,23 +19,29 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public Store registerNewStore(Store newStore) {
-        if(storeRepository.exists(Example.of(newStore))){
-            throw new BadRequest("Store is already registered.");
+        if(storeRepository.existsByCnpj(newStore.getCnpj())){
+            throw new BadRequest("A store with this CNPJ has already been registered.");
         }
         return storeRepository.insert(newStore);
     }
 
     @Override
-    public void deleteStore(String storeId) {
-        if(storeRepository.existsById(storeId)){
-            storeRepository.deleteById(storeId);
-        }
-        throw new NotFound("Store doesn't exists.");
+    public void deleteStore(Store store) {
+        storeRepository.delete(store);
     }
 
     @Override
-    public Store findStoreById(String storeId) {
-        return storeRepository.findById(storeId).orElseThrow(() -> new NotFound("Store not found."));
+    public Store getUserStore(String storeId, User user) {
+        Store store = findStore(storeId);
+        if(store.belongsTo(user)){
+            return store;
+        }
+        throw new Forbidden("This store is not connected to this account.");
+    }
+
+    private Store findStore(String storeId) {
+        return storeRepository.findById(storeId)
+                .orElseThrow(() -> new NotFound("Store not found."));
     }
 
     @Override

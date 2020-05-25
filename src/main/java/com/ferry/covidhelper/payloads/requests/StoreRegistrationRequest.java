@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor(onConstructor_ = @JsonCreator)
-public class StoreRegisterRequest {
+public class StoreRegistrationRequest {
 
     @JsonProperty("name")
     private final String name;

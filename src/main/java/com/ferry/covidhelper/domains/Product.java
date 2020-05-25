@@ -1,6 +1,6 @@
 package com.ferry.covidhelper.domains;
 
-import com.ferry.covidhelper.payloads.requests.ProductRegisterRequest;
+import com.ferry.covidhelper.payloads.requests.ProductRegistrationRequest;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import org.bson.types.ObjectId;
@@ -30,7 +30,7 @@ public class Product {
     @Setter
     private long stock;
 
-    public static Product of(ProductRegisterRequest request, Store store){
+    public static Product of(ProductRegistrationRequest request, Store store){
         return new Product(
                 new ObjectId().toString(),
                 store.getId(),

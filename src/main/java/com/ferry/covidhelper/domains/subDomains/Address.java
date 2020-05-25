@@ -1,6 +1,6 @@
 package com.ferry.covidhelper.domains.subDomains;
 
-import com.ferry.covidhelper.payloads.requests.StoreRegisterRequest;
+import com.ferry.covidhelper.payloads.requests.StoreRegistrationRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -27,7 +27,7 @@ public class Address {
     @Field("addressNumber")
     private final String addressNumber;
 
-    public static Address getAddressFromRequest(StoreRegisterRequest request){
+    public static Address getAddressFromRequest(StoreRegistrationRequest request){
         return new Address(
                 request.getZipCode(),
                 request.getStreet(),
