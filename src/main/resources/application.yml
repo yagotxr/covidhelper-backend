@@ -20,6 +20,13 @@ spring:
             scope:
               - email
               - profile
+          facebook:
+            clientId: 589441458357676
+            clientSecret: 48e0a723e5dcf9cf9b3597c89e7b7aab
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - public_profile
 app:
   auth:
     tokenSecret: 926D96C90030DD58429D2751AC1BDBBC

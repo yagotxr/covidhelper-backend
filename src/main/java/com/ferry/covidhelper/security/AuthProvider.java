@@ -1,5 +1,6 @@
 package com.ferry.covidhelper.security;
 
 public enum AuthProvider {
-    google
+    google,
+    facebook
 }
