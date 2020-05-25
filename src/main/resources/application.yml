@@ -9,16 +9,21 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/covidhelper
-
-#app:
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          google:
-#            clientId: 722607456520-p2kg7jk1m8gbetqhq856h89t1ug19fn9.apps.googleusercontent.com
-#            clientSecret: 5QL6IBR4KNqxk5zDcsgLSjTp
-#            redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
-#            scope:
-#              - email
-#              - profile
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 722607456520-p2kg7jk1m8gbetqhq856h89t1ug19fn9.apps.googleusercontent.com
+            clientSecret: 5QL6IBR4KNqxk5zDcsgLSjTp
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
+app:
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: 864000000
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:3000/oauth2/redirect

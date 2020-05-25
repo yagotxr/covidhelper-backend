@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -19,6 +20,9 @@ public class Store {
     @Id
     private String storeId;
 
+    @Indexed
+    private String user;
+
     @Field("name")
     private String name;
 
@@ -31,17 +35,10 @@ public class Store {
     @Field("phone")
     private String phone;
 
-//    @Field("email")
-//    private String email;
-
-//    @Field("providerId")
-//    private String providerId;
-
-
-
-    public static Store of(StoreRegisterRequest request){
+    public static Store of(User user, StoreRegisterRequest request){
         return new Store(
                 new ObjectId().toString(),
+                user.getId(),
                 request.getName(),
                 request.getCnpj(),
                 getAddressFromRequest(request),
