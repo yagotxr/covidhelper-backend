@@ -6,6 +6,7 @@ import com.ferry.covidhelper.repositories.UserRepository;
 import com.ferry.covidhelper.security.user.OAuth2UserInfo;
 import com.ferry.covidhelper.security.user.OAuth2UserInfoFactory;
 import com.ferry.covidhelper.security.user.UserPrincipal;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
@@ -20,10 +21,10 @@ import java.util.Optional;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 @Service
+@AllArgsConstructor
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest oAuth2UserRequest) throws OAuth2AuthenticationException {

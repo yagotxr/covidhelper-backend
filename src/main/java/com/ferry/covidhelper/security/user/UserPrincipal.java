@@ -1,6 +1,8 @@
 package com.ferry.covidhelper.security.user;
 
 import com.ferry.covidhelper.domains.User;
+import lombok.AccessLevel;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,11 +13,15 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Collections.singletonList;
+import static lombok.AccessLevel.PRIVATE;
 
 public class UserPrincipal implements OAuth2User, UserDetails {
-    private String id;
-    private String email;
-    private Collection<? extends GrantedAuthority> authorities;
+
+    private final String id;
+    private final String email;
+    private final Collection<? extends GrantedAuthority> authorities;
+
+    @Setter(PRIVATE)
     private Map<String, Object> attributes;
 
     public UserPrincipal(String id, String email, Collection<? extends GrantedAuthority> authorities) {
@@ -25,28 +31,14 @@ public class UserPrincipal implements OAuth2User, UserDetails {
     }
 
     public static UserPrincipal create(User user) {
-        List<GrantedAuthority> authorities =
-                singletonList(new SimpleGrantedAuthority("ROLE_USER"));
-
-        return new UserPrincipal(
-                user.getId(),
-                user.getEmail(),
-                authorities
-        );
+        List<GrantedAuthority> authorities = singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+        return new UserPrincipal(user.getId(), user.getEmail(), authorities);
     }
 
     public static UserPrincipal create(User user, Map<String, Object> attributes) {
         UserPrincipal userPrincipal = UserPrincipal.create(user);
         userPrincipal.setAttributes(attributes);
         return userPrincipal;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     @Override
@@ -87,10 +79,6 @@ public class UserPrincipal implements OAuth2User, UserDetails {
     @Override
     public Map<String, Object> getAttributes() {
         return attributes;
-    }
-
-    public void setAttributes(Map<String, Object> attributes) {
-        this.attributes = attributes;
     }
 
     @Override
