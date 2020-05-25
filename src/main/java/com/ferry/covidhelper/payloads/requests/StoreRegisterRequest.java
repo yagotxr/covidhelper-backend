@@ -2,7 +2,6 @@ package com.ferry.covidhelper.payloads.requests;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.ferry.covidhelper.domains.Store;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -11,30 +10,30 @@ import lombok.Getter;
 public class StoreRegisterRequest {
 
     @JsonProperty("name")
-    private String name;
+    private final String name;
 
     @JsonProperty("cnpj")
-    private String cnpj;
+    private final String cnpj;
 
     @JsonProperty("zipCode")
-    private String zipCode;
+    private final String zipCode;
 
     @JsonProperty("street")
-    private String street;
+    private final String street;
 
     @JsonProperty("city")
-    private String city;
+    private final String city;
 
     @JsonProperty("state")
-    private String state;
+    private final String state;
 
     @JsonProperty("addOn")
-    private String addOn;
+    private final String addOn;
 
     @JsonProperty("addressNumber")
-    private String addressNumber;
+    private final String addressNumber;
 
-    @JsonProperty("phone")
-    private String phone;
+    @JsonProperty("phoneNumbers")
+    private final String[] phoneNumbers;
 
 }

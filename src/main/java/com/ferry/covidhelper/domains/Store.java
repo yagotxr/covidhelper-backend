@@ -11,6 +11,8 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import javax.validation.constraints.Email;
+
 import static com.ferry.covidhelper.domains.subDomains.Address.getAddressFromRequest;
 import static lombok.AccessLevel.PRIVATE;
 
@@ -24,7 +26,8 @@ public class Store {
     private String id;
 
     @Indexed
-    private String user;
+    @Field("userId")
+    private String userId;
 
     @Field("name")
     private String name;
@@ -35,17 +38,17 @@ public class Store {
     @Field("address")
     private Address address;
 
-    @Field("phone")
-    private String phone;
+    @Field("phoneNumbers")
+    private String[] phoneNumbers;
 
-    public static Store of(User user, StoreRegisterRequest request){
+    public static Store of(StoreRegisterRequest request, User user){
         return new Store(
                 new ObjectId().toString(),
                 user.getId(),
                 request.getName(),
                 request.getCnpj(),
                 getAddressFromRequest(request),
-                request.getPhone()
+                request.getPhoneNumbers()
         );
     }
 }

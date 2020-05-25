@@ -1,6 +1,7 @@
 package com.ferry.covidhelper.services.impls;
 
 import com.ferry.covidhelper.domains.Store;
+import com.ferry.covidhelper.domains.User;
 import com.ferry.covidhelper.exceptions.BadRequest;
 import com.ferry.covidhelper.exceptions.NotFound;
 import com.ferry.covidhelper.repositories.StoreRepository;
