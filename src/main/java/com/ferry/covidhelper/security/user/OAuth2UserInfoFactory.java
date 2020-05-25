@@ -1,4 +1,4 @@
-package com.ferry.covidhelper.security;
+package com.ferry.covidhelper.security.user;
 
 import com.ferry.covidhelper.exceptions.OAuth2AuthenticationProcessingException;
 

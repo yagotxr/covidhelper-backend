@@ -1,8 +1,9 @@
-package com.ferry.covidhelper.security;
+package com.ferry.covidhelper.security.user;
 
 import com.ferry.covidhelper.domains.User;
 import com.ferry.covidhelper.exceptions.NotFound;
 import com.ferry.covidhelper.repositories.UserRepository;
+import com.ferry.covidhelper.security.user.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

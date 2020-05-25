@@ -1,6 +1,7 @@
-package com.ferry.covidhelper.security;
+package com.ferry.covidhelper.security.token;
 
 import com.ferry.covidhelper.properties.AppProperties;
+import com.ferry.covidhelper.security.user.UserPrincipal;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

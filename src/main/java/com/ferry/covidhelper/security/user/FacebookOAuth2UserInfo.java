@@ -1,4 +1,6 @@
-package com.ferry.covidhelper.security;
+package com.ferry.covidhelper.security.user;
+
+import com.ferry.covidhelper.security.user.OAuth2UserInfo;
 
 import java.util.Map;
 

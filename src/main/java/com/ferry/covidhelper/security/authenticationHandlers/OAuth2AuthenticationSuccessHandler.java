@@ -1,13 +1,15 @@
-package com.ferry.covidhelper.security;
+package com.ferry.covidhelper.security.authenticationHandlers;
 
 import com.ferry.covidhelper.exceptions.BadRequest;
 import com.ferry.covidhelper.properties.AppProperties;
+import com.ferry.covidhelper.security.CookieUtils;
+import com.ferry.covidhelper.security.HttpCookieOAuth2AuthorizationRequestRepository;
+import com.ferry.covidhelper.security.token.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

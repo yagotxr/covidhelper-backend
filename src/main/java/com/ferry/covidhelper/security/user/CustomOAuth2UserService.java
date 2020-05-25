@@ -1,9 +1,11 @@
-package com.ferry.covidhelper.security;
+package com.ferry.covidhelper.security.user;
 
 import com.ferry.covidhelper.domains.User;
 import com.ferry.covidhelper.exceptions.OAuth2AuthenticationProcessingException;
 import com.ferry.covidhelper.repositories.UserRepository;
-import org.bson.types.ObjectId;
+import com.ferry.covidhelper.security.user.OAuth2UserInfo;
+import com.ferry.covidhelper.security.user.OAuth2UserInfoFactory;
+import com.ferry.covidhelper.security.user.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
