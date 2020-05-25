@@ -2,7 +2,7 @@ package com.ferry.covidhelper.services.impls;
 
 import com.ferry.covidhelper.domains.Product;
 import com.ferry.covidhelper.exceptions.BadRequest;
-import com.ferry.covidhelper.exceptions.NotFoundException;
+import com.ferry.covidhelper.exceptions.NotFound;
 import com.ferry.covidhelper.repositories.ProductRepository;
 import com.ferry.covidhelper.services.ProductService;
 import lombok.AllArgsConstructor;
@@ -23,7 +23,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getSpecificProduct(String productId) {
-            return productRepository.findById(productId).orElseThrow(() -> new NotFoundException("Product not found"));
+            return productRepository.findById(productId).orElseThrow(() -> new NotFound("Product not found"));
     }
 
     @Override

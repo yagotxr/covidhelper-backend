@@ -2,7 +2,7 @@ package com.ferry.covidhelper.services.impls;
 
 import com.ferry.covidhelper.domains.Store;
 import com.ferry.covidhelper.exceptions.BadRequest;
-import com.ferry.covidhelper.exceptions.NotFoundException;
+import com.ferry.covidhelper.exceptions.NotFound;
 import com.ferry.covidhelper.repositories.StoreRepository;
 import com.ferry.covidhelper.services.StoreService;
 import lombok.AllArgsConstructor;
@@ -28,12 +28,12 @@ public class StoreServiceImpl implements StoreService {
         if(storeRepository.existsById(storeId)){
             storeRepository.deleteById(storeId);
         }
-        throw new NotFoundException("Store doesn't exists.");
+        throw new NotFound("Store doesn't exists.");
     }
 
     @Override
     public Store findStoreById(String storeId) {
-        return storeRepository.findById(storeId).orElseThrow(() -> new NotFoundException("Store not found."));
+        return storeRepository.findById(storeId).orElseThrow(() -> new NotFound("Store not found."));
     }
 
     @Override
