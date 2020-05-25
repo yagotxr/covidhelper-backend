@@ -1,8 +1,7 @@
 package com.ferry.covidhelper.services.impls;
 
 import com.ferry.covidhelper.domains.Product;
-import com.ferry.covidhelper.domains.Store;
-import com.ferry.covidhelper.exceptions.BadRequestException;
+import com.ferry.covidhelper.exceptions.BadRequest;
 import com.ferry.covidhelper.exceptions.NotFoundException;
 import com.ferry.covidhelper.repositories.ProductRepository;
 import com.ferry.covidhelper.services.ProductService;
@@ -35,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product updateStock(Product product, long stockUpdate) {
         if(stockUpdate < 0){
-            throw new BadRequestException("Stocks must not be less then 0;");
+            throw new BadRequest("Stocks must not be less then 0;");
         }
         product.setStock(stockUpdate);
         return productRepository.save(product);
