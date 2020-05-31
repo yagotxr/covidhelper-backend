@@ -17,11 +17,11 @@ import javax.validation.constraints.Email;
 public class User {
 
     @Id
-    private String id;
+    private final String id;
 
     @Email
     @Field("email")
-    private String email;
+    private final String email;
 
     @Field("name")
     @Setter
@@ -35,7 +35,7 @@ public class User {
     private String picture;
 
     @Field("providerId")
-    private String providerId;
+    private final String providerId;
 
     public static User of(OAuth2UserInfo oAuth2UserInfo){
         return new User(
