@@ -1,6 +1,7 @@
 package com.ferry.covidhelper.configurations;
 
-import com.ferry.covidhelper.security.*;
+import com.ferry.covidhelper.security.HttpCookieOAuth2AuthorizationRequestRepository;
+import com.ferry.covidhelper.security.RestAuthenticationEntryPoint;
 import com.ferry.covidhelper.security.authenticationHandlers.OAuth2AuthenticationFailureHandler;
 import com.ferry.covidhelper.security.authenticationHandlers.OAuth2AuthenticationSuccessHandler;
 import com.ferry.covidhelper.security.token.TokenAuthenticationFilter;
@@ -95,6 +96,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/",
                         "/error",
+                        "/account",
                         "/favicon.ico",
                         "/**/*.png",
                         "/**/*.gif",
@@ -104,7 +106,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js")
                 .permitAll()
-                .antMatchers("/auth/**", "/oauth2/**")
+                .antMatchers("/*", "/oauth2/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -123,7 +125,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .successHandler(oAuth2AuthenticationSuccessHandler)
                 .failureHandler(oAuth2AuthenticationFailureHandler);
 
-        // Add our custom Token based authentication filter
         http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }

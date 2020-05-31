@@ -11,6 +11,8 @@ import com.ferry.covidhelper.services.StoreService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class StoreServiceImpl implements StoreService {
@@ -50,4 +52,8 @@ public class StoreServiceImpl implements StoreService {
         return storeRepository.existsById(storeId);
     }
 
+    @Override
+    public List<Store> findStoresByCity(String city) {
+        return storeRepository.findAllByCity(city);
+    }
 }

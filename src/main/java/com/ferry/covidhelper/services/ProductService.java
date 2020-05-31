@@ -9,14 +9,8 @@ import java.util.List;
 public interface ProductService {
 
     Product registerProduct(ProductRegistrationRequest registrationRequest, Store store);
-
     Product getSpecificProduct(String productId, Store store);
-
     List<Product> getProductByStore(String storeId);
-
     Product editProduct(Product product, ProductRegistrationRequest registrationRequest);
-
-    //    boolean existsById(String productId);
     void deleteProduct(Product product);
-
 }

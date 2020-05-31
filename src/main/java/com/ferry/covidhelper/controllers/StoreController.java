@@ -20,7 +20,7 @@ public class StoreController {
     private final StoreService storeService;
     private final UserService userService;
 
-    @PostMapping("/stores")
+    @PostMapping("/account/stores")
     @ResponseStatus(CREATED)
     public StoreResponse registerStore(@AuthenticationPrincipal UserPrincipal principal,
                                        @RequestBody StoreRegistrationRequest request){
@@ -29,7 +29,7 @@ public class StoreController {
         return StoreResponse.of(store);
     }
 
-    @GetMapping("/stores/{storeId}")
+    @GetMapping("/account/stores/{storeId}")
     @ResponseStatus(OK)
     public StoreResponse getStoreProfile(@AuthenticationPrincipal UserPrincipal principal,
                                          @PathVariable("storeId") String storeId){
@@ -38,7 +38,7 @@ public class StoreController {
         return StoreResponse.of(store);
     }
 
-    @DeleteMapping("/stores/{storeId}")
+    @DeleteMapping("/account/stores/{storeId}")
     @ResponseStatus(NO_CONTENT)
     public void deleteStore(@AuthenticationPrincipal UserPrincipal principal,
                             @PathVariable("storeId") String storeId){

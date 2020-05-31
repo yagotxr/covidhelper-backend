@@ -13,6 +13,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
+import static java.util.stream.IntStream.range;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
@@ -23,7 +29,7 @@ public class ProductController {
     private final StoreService storeService;
     private final UserService userService;
 
-    @PostMapping("/stores/{storeId}/products")
+    @PostMapping("account/stores/{storeId}/products")
     @ResponseStatus(CREATED)
     public ProductResponse registerProduct(@AuthenticationPrincipal UserPrincipal principal,
                                            @RequestBody ProductRegistrationRequest productRegistrationRequest,
@@ -34,7 +40,7 @@ public class ProductController {
         return ProductResponse.of(product);
     }
 
-    @DeleteMapping("/stores/{storeId}/products/{productId}")
+    @DeleteMapping("account/stores/{storeId}/products/{productId}")
     @ResponseStatus(NO_CONTENT)
     public void deleteProduct(@AuthenticationPrincipal UserPrincipal principal,
                               @PathVariable("storeId") String storeId,
@@ -45,7 +51,7 @@ public class ProductController {
         productService.deleteProduct(product);
     }
 
-    @PutMapping("/stores/{storeId}/products/{productId}")
+    @PutMapping("account/stores/{storeId}/products/{productId}")
     @ResponseStatus(OK)
     public ProductResponse editProduct(@AuthenticationPrincipal UserPrincipal principal,
                                        @RequestBody ProductRegistrationRequest request,
@@ -58,4 +64,20 @@ public class ProductController {
         return ProductResponse.of(product);
     }
 
+    @GetMapping(value = "/products", params = {"city"})
+    @ResponseStatus(OK)
+    public Map<String, List<ProductResponse>> getProductsByCity(@RequestParam("city") String city) {
+        List<String> storesByCity = storeService.findStoresByCity(city).stream()
+                .map(Store::getId)
+                .collect(toList());
+
+        List<List<ProductResponse>> productsByStoreList = storesByCity.stream()
+                .map(store -> productService.getProductByStore(store).stream()
+                        .map(ProductResponse::of).collect(toList()))
+                .collect(toList());
+
+        return range(0, storesByCity.size())
+                .boxed()
+                .collect(toMap(storesByCity::get, productsByStoreList::get));
+    }
 }
