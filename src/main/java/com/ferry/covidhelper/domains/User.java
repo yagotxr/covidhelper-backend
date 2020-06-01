@@ -1,5 +1,6 @@
 package com.ferry.covidhelper.domains;
 
+import com.ferry.covidhelper.chats.ChatUser;
 import com.ferry.covidhelper.security.user.OAuth2UserInfo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,13 +38,23 @@ public class User {
     @Field("providerId")
     private final String providerId;
 
-    public static User of(OAuth2UserInfo oAuth2UserInfo){
+    public static User of(OAuth2UserInfo oAuth2UserInfo) {
         return new User(
                 new ObjectId().toString(),
                 oAuth2UserInfo.getEmail(),
                 oAuth2UserInfo.getName(),
                 oAuth2UserInfo.getImageUrl(),
                 oAuth2UserInfo.getId()
+        );
+    }
+
+    public static User of(ChatUser chatUser) {
+        return new User(
+                chatUser.getId(),
+                chatUser.getId().concat("@covidhelper.com"),
+                chatUser.getName(),
+                null,
+                new ObjectId().toString()
         );
     }
 }

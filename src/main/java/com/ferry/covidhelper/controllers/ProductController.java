@@ -67,17 +67,15 @@ public class ProductController {
     @GetMapping(value = "/products", params = {"city"})
     @ResponseStatus(OK)
     public Map<String, List<ProductResponse>> getProductsByCity(@RequestParam("city") String city) {
-        List<String> storesByCity = storeService.findStoresByCity(city).stream()
-                .map(Store::getId)
-                .collect(toList());
+        List<Store> storesByCity = storeService.findStoresByCity(city);
 
         List<List<ProductResponse>> productsByStoreList = storesByCity.stream()
-                .map(store -> productService.getProductByStore(store).stream()
+                .map(store -> productService.getProductByStore(store.getId()).stream()
                         .map(ProductResponse::of).collect(toList()))
                 .collect(toList());
 
         return range(0, storesByCity.size())
                 .boxed()
-                .collect(toMap(storesByCity::get, productsByStoreList::get));
+                .collect(toMap(i -> storesByCity.get(i).getName(), productsByStoreList::get));
     }
 }

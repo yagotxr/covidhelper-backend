@@ -20,7 +20,8 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/doctors/chats");
+        registry.enableSimpleBroker("/chats");
+        registry.enableSimpleBroker("/invites");
     }
 
     @Bean
