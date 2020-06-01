@@ -14,9 +14,24 @@ spring:
       client:
         registration:
           google:
-            clientId: ENC(3qOuC5fjnob3OsObRHLDq1388DUIVgmQ9vs8Y2A1jf2NbzbAtM/9ndV9LVsjt1Z0jebB4El8pAJzl0rQkjP67Xdnxo556Q8RKsd55V6pCiYus8ht2KG+lw==)
-            clientSecret: ENC(X8KF/2b9wwiIYNbJtF8/DqdiHACDycKdbHlltSTfelNmm9gSPGkw+A==)
-            redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
+            clientId: 722607456520-p2kg7jk1m8gbetqhq856h89t1ug19fn9.apps.googleusercontent.com
+            clientSecret: 5QL6IBR4KNqxk5zDcsgLSjTp
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
               - email
               - profile
+          facebook:
+            clientId: 589441458357676
+            clientSecret: 48e0a723e5dcf9cf9b3597c89e7b7aab
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - public_profile
+app:
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: 864000000
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:3000/oauth2/redirect
+
