@@ -13,6 +13,9 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
 
+    public final static String USER_TOPIC = "/users/";
+    public final static String CHAT_TOPIC = "/chats/";
+
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/websockets/connect");
@@ -21,7 +24,7 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.enableSimpleBroker("/chats");
-        registry.enableSimpleBroker("/invites");
+        registry.enableSimpleBroker("/users");
     }
 
     @Bean

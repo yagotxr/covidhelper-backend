@@ -28,14 +28,18 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public Doctor getDoctor(String doctorId) {
         return doctorRepository.findById(doctorId)
-                .orElseThrow(() -> new NotFound("Doctor not found"));
+                .orElseThrow(() -> new NotFound("Doctor not found."));
+    }
+
+    @Override
+    public void doctorExistsById(String doctorId) {
+        if (!doctorRepository.existsById(doctorId)) {
+            throw new BadRequest("Doctor not found.");
+        }
     }
 
     private boolean doctorExistsByCrm(String crm) {
         return doctorRepository.existsByCrm(crm);
     }
 
-    private boolean doctorExistsById(String doctorId) {
-        return doctorRepository.existsById(doctorId);
-    }
 }

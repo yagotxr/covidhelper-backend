@@ -9,4 +9,6 @@ public interface DoctorService {
     Doctor registerDoctor(DoctorRegistrationRequest registrationRequest, User user);
 
     Doctor getDoctor(String doctorId);
+
+    void doctorExistsById(String doctorId);
 }
