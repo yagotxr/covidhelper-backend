@@ -10,8 +10,8 @@ import java.time.LocalDate;
 
 @Getter
 @AllArgsConstructor
-@Document(collection = "brasilStatus")
-public class BrasilStatus {
+@Document(collection = "covidStatus")
+public class CovidStatus {
 
     @Id
     private final String id;
