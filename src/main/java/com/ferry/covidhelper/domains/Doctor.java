@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -18,6 +19,7 @@ public class Doctor {
     private final String id;
 
     @Field("crm")
+    @Indexed
     private final String crm;
 
     @Field("specialty")
@@ -26,12 +28,17 @@ public class Doctor {
     @Field("situation")
     private final String situation;
 
-    public static Doctor of(DoctorRegistrationRequest request) {
+    @Field("user")
+    @Indexed
+    private final String user;
+
+    public static Doctor of(DoctorRegistrationRequest request, User user) {
         return new Doctor(
                 new ObjectId().toString(),
                 request.getCrm(),
                 request.getSpecialty(),
-                request.getSituation()
+                request.getSituation(),
+                user.getId()
         );
     }
 }

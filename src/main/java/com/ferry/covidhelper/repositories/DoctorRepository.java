@@ -8,4 +8,8 @@ import java.util.Optional;
 public interface DoctorRepository extends MongoRepository<Doctor, String> {
 
     Optional<Doctor> findByCrm(String crm);
+
+    boolean existsByCrm(String crm);
+
+    boolean existsByUser(String userId);
 }
