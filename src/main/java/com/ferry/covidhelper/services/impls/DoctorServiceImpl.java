@@ -30,16 +30,22 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public void deleteDoctor(String crm, User user) {
-        Doctor doctor = getDoctorByCrm(crm);
+    public void deleteDoctor(String doctorId, User user) {
+        Doctor doctor = getDoctorById(doctorId);
         if (isRelatedToUser(user, doctor)) {
             doctorRepository.delete(doctor);
         }
     }
 
-    private Doctor getDoctorByCrm(String crm) {
+    @Override
+    public Doctor getDoctorById(String id) {
+        return doctorRepository.findById(id)
+                .orElseThrow(() -> new NotFound("Doctor not found."));
+    }
+
+    public Doctor getDoctorByCrm(String crm) {
         return doctorRepository.findByCrm(crm)
-                .orElseThrow(() -> new NotFound("Doctor not found"));
+                .orElseThrow(() -> new NotFound("Doctor not found."));
     }
 
     private boolean isRelatedToUser(User user, Doctor doctor) {
@@ -56,4 +62,6 @@ public class DoctorServiceImpl implements DoctorService {
     private boolean hasDoctorInAccount(User user) {
         return doctorRepository.existsByUser(user.getId());
     }
+
+
 }

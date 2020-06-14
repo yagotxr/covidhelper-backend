@@ -27,9 +27,6 @@ public class User {
     @Setter
     private String name;
 
-//    @Field("provider")
-//    private AuthProvider provider;
-
     @Field("picture")
     @Setter
     private String picture;

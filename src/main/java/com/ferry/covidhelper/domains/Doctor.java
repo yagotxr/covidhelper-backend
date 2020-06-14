@@ -22,23 +22,28 @@ public class Doctor {
     @Indexed
     private final String crm;
 
+    @Field("name")
+    private final String name;
+
     @Field("specialty")
     private final String specialty;
 
     @Field("situation")
     private final String situation;
 
-    @Field("user")
     @Indexed
+    @Field("user")
     private final String user;
 
     public static Doctor of(DoctorRegistrationRequest request, User user) {
         return new Doctor(
                 new ObjectId().toString(),
                 request.getCrm(),
+                request.getName(),
                 request.getSpecialty(),
                 request.getSituation(),
                 user.getId()
         );
     }
+
 }

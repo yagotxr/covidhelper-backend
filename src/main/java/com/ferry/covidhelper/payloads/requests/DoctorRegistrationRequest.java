@@ -12,6 +12,9 @@ public class DoctorRegistrationRequest {
     @JsonProperty("crm")
     private final String crm;
 
+    @JsonProperty("name")
+    private final String name;
+
     @JsonProperty("specialty")
     private final String specialty;
 

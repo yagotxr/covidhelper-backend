@@ -9,4 +9,8 @@ public interface DoctorService {
     Doctor registerDoctor(DoctorRegistrationRequest registrationRequest, User user);
 
     void deleteDoctor(String doctorId, User user);
+
+    Doctor getDoctorById(String id);
+
+    Doctor getDoctorByCrm(String crm);
 }
