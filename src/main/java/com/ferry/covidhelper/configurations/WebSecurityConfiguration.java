@@ -96,7 +96,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/",
                         "/error",
-                        "/account",
                         "/favicon.ico",
                         "/**/*.png",
                         "/**/*.gif",
@@ -106,9 +105,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js")
                 .permitAll()
-                .antMatchers("/*", "/oauth2/**")
+                .antMatchers("/oauth2/**")
                 .permitAll()
-                .anyRequest()
+                .antMatchers("/account/**")
                 .authenticated()
                 .and()
                 .oauth2Login()
