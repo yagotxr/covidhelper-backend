@@ -1,5 +1,7 @@
 package com.ferry.covidhelper.configurations;
 
+import com.ferry.covidhelper.security.user.AuthenticationFacade;
+import com.ferry.covidhelper.security.user.AuthenticationImpl;
 import com.ferry.covidhelper.websocket.SessionRegistry;
 import com.ferry.covidhelper.websocket.custom.CustomSessionRegistry;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +17,7 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/account/connect")
+        registry.addEndpoint("/connect")
                 .setHandshakeHandler(new UserHandshakeHandler())
                 .withSockJS();
     }
@@ -29,5 +31,10 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
     @Bean
     public SessionRegistry sessionRegistry() {
         return new CustomSessionRegistry();
+    }
+
+    @Bean
+    public AuthenticationFacade authenticationFacade(){
+        return new AuthenticationImpl();
     }
 }
