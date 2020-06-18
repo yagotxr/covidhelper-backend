@@ -1,6 +1,5 @@
 package com.ferry.covidhelper.websocket.custom;
 
-import com.ferry.covidhelper.services.UserService;
 import com.ferry.covidhelper.websocket.SessionRegistry;
 import lombok.AllArgsConstructor;
 import org.springframework.messaging.simp.user.SimpUser;
@@ -15,8 +14,6 @@ import static java.util.Objects.isNull;
 @Component
 @AllArgsConstructor
 public class CustomSessionRegistry extends DefaultSimpUserRegistry implements SessionRegistry {
-
-    private final UserService userService;
 
     @Override
     public boolean isUserActive(String userId) {

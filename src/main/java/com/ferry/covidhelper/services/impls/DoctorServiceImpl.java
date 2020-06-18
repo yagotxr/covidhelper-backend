@@ -38,6 +38,11 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
+    public Doctor getDoctorByUser(String userId) {
+        return doctorRepository.findByUser(userId).orElse(null);
+    }
+
+    @Override
     public Doctor getDoctorById(String id) {
         return doctorRepository.findById(id)
                 .orElseThrow(() -> new NotFound("Doctor not found."));

@@ -10,6 +10,8 @@ public interface DoctorService {
 
     void deleteDoctor(String doctorId, User user);
 
+    Doctor getDoctorByUser(String user);
+
     Doctor getDoctorById(String id);
 
     Doctor getDoctorByCrm(String crm);

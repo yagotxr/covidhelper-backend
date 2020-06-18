@@ -13,7 +13,8 @@ function setConnected(connected) {
 }
 
 function connect() {
-    var socket = new SockJS('/api/connect');
+    var userId = Math.random();
+    var socket = new SockJS('/api/account/connect');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         setConnected(true);
@@ -21,6 +22,7 @@ function connect() {
         stompClient.subscribe('/chats/5ee574ed13fbac626ad4f0e4', function (greeting) {
             showGreeting(JSON.parse(greeting.body).content);
         });
+        stompClient.subscribe('/connectedUsers');
     });
 }
 

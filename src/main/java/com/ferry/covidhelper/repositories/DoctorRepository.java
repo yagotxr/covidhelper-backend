@@ -9,6 +9,8 @@ public interface DoctorRepository extends MongoRepository<Doctor, String> {
 
     Optional<Doctor> findByCrm(String crm);
 
+    Optional<Doctor> findByUser(String userId);
+
     boolean existsByCrm(String crm);
 
     boolean existsByUser(String userId);
