@@ -1,6 +1,6 @@
-package com.ferry.covidhelper.controllers;
-
-public class ChatController {
-
-
-}
+//package com.ferry.covidhelper.controllers;
+//
+//public class ChatController {
+//
+//
+//}
