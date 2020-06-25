@@ -17,4 +17,6 @@ public interface StoreService {
     boolean existsById(String storeId);
 
     List<Store> findStoresByCity(String city);
+
+    List<Store> findUserStores(String userId);
 }

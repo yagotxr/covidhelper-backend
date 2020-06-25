@@ -56,4 +56,9 @@ public class StoreServiceImpl implements StoreService {
     public List<Store> findStoresByCity(String city) {
         return storeRepository.findAllByCity(city);
     }
+
+    @Override
+    public List<Store> findUserStores(String userId) {
+        return storeRepository.findAllByUserId(userId);
+    }
 }

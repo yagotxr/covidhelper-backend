@@ -6,13 +6,15 @@ import com.ferry.covidhelper.domains.Store;
 import com.ferry.covidhelper.domains.subDomains.Address;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import static lombok.AccessLevel.PRIVATE;
 
 @Getter
 @AllArgsConstructor(onConstructor_ = @JsonCreator, access = PRIVATE)
 public class StoreResponse {
+
+    @JsonProperty("id")
+    private final String id;
 
     @JsonProperty("name")
     private final String name;
@@ -28,6 +30,7 @@ public class StoreResponse {
 
     public static StoreResponse of(Store store){
         return new StoreResponse(
+                store.getId(),
                 store.getName(),
                 store.getCnpj(),
                 store.getAddress(),
