@@ -5,6 +5,7 @@ import com.ferry.covidhelper.domains.User;
 import com.ferry.covidhelper.payloads.requests.StoreRegistrationRequest;
 import com.ferry.covidhelper.payloads.responses.StoreResponse;
 import com.ferry.covidhelper.security.user.UserPrincipal;
+import com.ferry.covidhelper.services.ProductService;
 import com.ferry.covidhelper.services.StoreService;
 import com.ferry.covidhelper.services.UserService;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,7 @@ public class StoreController {
 
     private final StoreService storeService;
     private final UserService userService;
+    private final ProductService productService;
 
     @PostMapping("/account/stores")
     @ResponseStatus(CREATED)
@@ -55,6 +57,7 @@ public class StoreController {
                             @PathVariable("storeId") String storeId){
         User user = userService.findUser(principal.getName());
         Store store = storeService.getStore(storeId, user);
+        productService.deleteProductByStore(store);
         storeService.deleteStore(store);
     }
 

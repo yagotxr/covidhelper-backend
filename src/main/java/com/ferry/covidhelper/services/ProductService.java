@@ -13,4 +13,5 @@ public interface ProductService {
     List<Product> getProductByStore(String storeId);
     Product editProduct(Product product, ProductRegistrationRequest registrationRequest);
     void deleteProduct(Product product);
+    void deleteProductByStore(Store store);
 }

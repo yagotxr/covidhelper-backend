@@ -10,6 +10,9 @@ import lombok.Getter;
 @AllArgsConstructor(onConstructor_ = @JsonCreator)
 public class ProductResponse {
 
+    @JsonProperty("id")
+    private final String id;
+
     @JsonProperty("name")
     private final String name;
 
@@ -21,6 +24,7 @@ public class ProductResponse {
 
     public static ProductResponse of(Product product) {
         return new ProductResponse(
+                product.getId(),
                 product.getName(),
                 product.getDescription(),
                 product.getStock());
