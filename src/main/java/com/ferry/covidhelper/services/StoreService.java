@@ -12,9 +12,11 @@ public interface StoreService {
 
     void deleteStore(Store store);
 
-    Store getStore(String storeId, User user);
+    Store getUsersStore(String storeId, User user);
 
     boolean existsById(String storeId);
 
     List<Store> findStoresByCity(String city);
+
+    Store getStoreById(String storeId);
 }

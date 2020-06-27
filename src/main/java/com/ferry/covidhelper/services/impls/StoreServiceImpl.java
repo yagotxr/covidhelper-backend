@@ -34,7 +34,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public Store getStore(String storeId, User user) {
+    public Store getUsersStore(String storeId, User user) {
         Store store = findStore(storeId);
         if (store.belongsTo(user)) {
             return store;
@@ -55,5 +55,11 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public List<Store> findStoresByCity(String city) {
         return storeRepository.findAllByCity(city);
+    }
+
+    @Override
+    public Store getStoreById(String storeId) {
+        return storeRepository.findById(storeId)
+                .orElseThrow(() -> new NotFound("Store not found"));
     }
 }
