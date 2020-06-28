@@ -58,7 +58,13 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public List<Store> findUserStores(String userId) {
+    public List<Store> getUserStore(String userId) {
         return storeRepository.findAllByUserId(userId);
+    }
+
+    @Override
+    public Store getStoreById(String storeId) {
+        return storeRepository.findById(storeId)
+                .orElseThrow(() -> new NotFound("Store not found"));
     }
 }

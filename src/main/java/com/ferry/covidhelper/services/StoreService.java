@@ -18,5 +18,7 @@ public interface StoreService {
 
     List<Store> findStoresByCity(String city);
 
-    List<Store> findUserStores(String userId);
+    List<Store> getUserStore(String userId);
+
+    Store getStoreById(String storeId);
 }
